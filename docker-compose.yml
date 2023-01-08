@@ -16,7 +16,7 @@ services:
     env_file:
       - .env
     ports:
-      - 8080-5000
+      - 8080:5000
     networks:
       - bird-backend
       - bird-frontend
@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     ports:
-      - 80-5000
+      - 80:5000
     networks:
       - bird-frontend
 
