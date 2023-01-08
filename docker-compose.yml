@@ -24,7 +24,7 @@ services:
       - ./config:/webapp/config:ro
 
   frontend:
-    image: ghcr.io/bird-exchange/frontend:v0.1.1
+    image: ghcr.io/bird-exchange/frontend:v0.1.2
     restart: always
     env_file:
       - .env
