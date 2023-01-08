@@ -50,5 +50,5 @@ services:
       - ./.data/minio:/data
 
   netwoks:
-    - backend
-    - frontend
+    backend
+    frontend
