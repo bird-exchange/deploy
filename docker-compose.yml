@@ -49,6 +49,6 @@ services:
     volumes:
       - ./.data/minio:/data
 
-  networks:
-    bird-backend:
-    bird-frontend:
+networks:
+  bird-backend:
+  bird-frontend:
