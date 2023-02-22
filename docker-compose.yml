@@ -16,15 +16,16 @@ services:
     env_file:
       - .env
     ports:
-      - 8080:5000
+      - 8080:5001
     networks:
       - bird-backend
       - bird-frontend
+      - bird-minio
     volumes:
       - ./config:/webapp/config:ro
 
   frontend:
-    image: ghcr.io/bird-exchange/frontend:v0.2.0
+    image: ghcr.io/bird-exchange/frontend:v0.2.1
     restart: always
     env_file:
       - .env
@@ -32,17 +33,7 @@ services:
       - 80:5000
     networks:
       - bird-frontend
-
-
-  worker:
-    image: ghcr.io/bird-exchange/worker:v0.1.1
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - 80:5000
-    networks:
-      - bird-backend
+      - bird-minio
 
   minio:
     restart: always
@@ -53,6 +44,7 @@ services:
     command: server /data --console-address ':6001' --address ':9000'
     networks:
       - bird-backend
+      - bird-minio
     environment:
       - MINIO_ROOT_USER=${AWS_ACCESS_KEY_ID}
       - MINIO_ROOT_PASSWORD=${AWS_SECRET_ACCESS_KEY}
@@ -63,3 +55,4 @@ services:
 networks:
   bird-backend:
   bird-frontend:
+  bird-minio:
